@@ -1,0 +1,28 @@
+# Taken from https://github.com/OAI/OpenAPI-Specification/blob/main/examples/v3.0/petstore.yaml
+
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Drug bank
+  license:
+    name: MIT
+servers:
+  - url: https://xiaojinyu.xyz
+paths:
+  /query:
+    post:
+      summary: Excute pandas command
+      operationId: query
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Query"
+components:
+  schemas:
+    Query:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
