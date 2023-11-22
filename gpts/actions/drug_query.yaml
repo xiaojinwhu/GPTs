@@ -11,7 +11,7 @@ servers:
 paths:
   /query:
     post:
-      summary: Excute pandas command
+      summary: sql scripts for query on drug_df
       operationId: query
       content:
         application/json:
@@ -22,7 +22,7 @@ components:
     Query:
       type: object
       required:
-        - query
+        - sql
       properties:
-        query:
+        sql:
           type: string

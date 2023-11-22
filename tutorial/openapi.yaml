@@ -1,0 +1,74 @@
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
+    SQLQuery:
+      examples:
+      - query: SELECT * FROM drug_info LIMIT 10
+      properties:
+        query:
+          description: SQL query to execute
+          title: Query
+          type: string
+      required:
+      - query
+      title: SQLQuery
+      type: object
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          title: Location
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+      type: object
+info:
+  description: 药品知识库API
+  title: 药品知识库接口文档
+  version: 0.0.1
+openapi: 3.1.0
+paths:
+  /execute/:
+    post:
+      operationId: execute_sql
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SQLQuery'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Execute SQL query
+servers:
+- url: https://xiaojinyu.xyz

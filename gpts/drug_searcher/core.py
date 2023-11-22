@@ -1,6 +1,7 @@
 import os
 
 import pandas as pd
+from pandasql import sqldf
 from rich import print
 
 DATA_PATH = os.getenv("DATA_PATH") or "data/drugs.csv"
@@ -17,8 +18,11 @@ globals_dict = {
 locals_dict = {}
 
 
-def exec_query(exec_string):
-    # result = ""
-    exec(exec_string, globals_dict, locals_dict)
-    result = locals_dict["result"].to_string()
+def exec_query(sql):
+    # # result = ""
+    # exec(exec_string, globals_dict, locals_dict)
+
+    # result = locals_dict["result"].to_markdown()
+
+    result = sqldf(sql)
     return {"data": result}

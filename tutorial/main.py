@@ -5,7 +5,7 @@ import databases
 from fastapi import Depends, FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-# 数据库配置（请替换为你的数据库URI）
+# 数据库配置
 DATA_PATH = os.getenv("DATA_PATH", "data/drugs.db")
 DATABASE_URL = f"sqlite:///{DATA_PATH}"
 database = databases.Database(DATABASE_URL)
@@ -34,7 +34,7 @@ app = FastAPI(
     title="药品知识库接口文档",
     description="药品知识库API",
     version="0.0.1",
-    servers=[{"url": "https://xiaojinyu.xyz"}],
+    servers=[{"url": "https://yourdomain.here"}],
 )
 
 

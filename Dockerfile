@@ -34,11 +34,11 @@ WORKDIR /app
 ENV PYTHONPATH=/app/pkgs
 RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ --upgrade pydantic fastapi
 
-COPY data /app/data
+COPY data/drugs.db /app/data/drugs.db
 # 复制构建阶段的Python依赖
 # COPY --from=builder /app/assets/ /assets/
 COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
 COPY --from=builder /app/*.so /app/pkgs/
 
 ENV MODULE_NAME=api_server.app 
-ENV DATA_PATH=/app/data/drugs.csv
+ENV DATA_PATH=/app/data/drugs.db
